@@ -1,0 +1,55 @@
+{% extends "base-generic.html" %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/attendance_list_styles.css' %}">
+    <div>
+        <button class="cust-button" onclick="location.href='{% url 'attendance-create' %}';">Create Attendance</button>
+    </div>
+    <br>
+    <h1>Attendance</h1>
+    <form method="get">
+        <table>
+        {{ filter.form.as_table }}
+        </table>
+        <input type="submit" />
+    </form>
+    {% if object_list %}
+        <ul class="list-group">
+        {% for attendance in page_obj %}
+            <li class="list-med-item list-group-item" style="background-color:#ECE5F0; border-radius: 50px; justify-content: center;">
+                <div class="container">
+                <div class="row" style="justify-content: space-around;">
+                    <div class="row-sm">
+                    <a href="{% url 'attendance-detail' attendance.id %}">{{ attendance.date }}</a>
+                    </div>
+                    <div class="row-sm">
+                        <button class="cust-button" onclick="location.href='{% url 'attendance-delete' attendance.id %}';">Delete</button>
+                    </div>
+                    <div class="row-sm">
+                        <button class="cust-button" onclick="location.href='{% url 'attendance-update' attendance.id %}';">Update</button>
+                    </div>
+                </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+      <p>There are no attendance records in this application.</p>
+    {% endif %}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% endblock %}

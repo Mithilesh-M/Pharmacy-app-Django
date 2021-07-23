@@ -1,0 +1,13 @@
+{% extends "base-generic.html" %}
+
+{% block content %}
+<br>
+<form method="post">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/medicine_confirm_delete_styles.css' %}">
+    {% csrf_token %}
+    <h1>Dealer Delete</h1>
+    <p>Are you sure you want to delete "{{ object.name }}" this dealer?</p>
+    <input type="submit" value="Confirm">
+</form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base-generic.html" %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/attendance_form_styles.css' %}">
+    <div>
+        <h1>Attendance</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}

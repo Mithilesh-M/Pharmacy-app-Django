@@ -1,0 +1,26 @@
+h1{
+    background-color: #59114D;
+    color: wheat;
+    border-radius: 50px;
+    padding-left: 20px;
+    margin: 10px;
+}
+
+form{
+    margin: 10px;
+    font-size: large;
+}
+
+.cust-button{
+    border-radius: 50px;
+    font-size: medium;
+}
+
+input{
+    border-radius: 50px;
+}
+
+textarea{
+    padding: 50px;
+    border-radius: 50px;
+}

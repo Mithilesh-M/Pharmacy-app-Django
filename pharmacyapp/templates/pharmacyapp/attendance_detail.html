@@ -1,0 +1,27 @@
+{% extends "base-generic.html" %}
+
+{% block content %}
+    <br>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/attendance_detail_styles.css' %}">
+    <h1>Attendance</h1>
+    <div style="margin: 10px;">
+        <button class="cust-button" onclick="location.href='{% url "attendance-update" attendance.id %}';">Update Attendance</button>
+        <button class="cust-button" onclick="location.href='{% url "attendance-delete" attendance.id %}';">Delete Attendance</button>
+    </div>
+    <div class="bord">
+        <br>
+        <h6>Date : <span> {{ object.date }} </span> </h6>
+        <h6>Employees present:
+            {% if object.employees.all %}
+                <ul>
+                    {% for emp in object.employees.all %}
+                        <li>{{ emp.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <span>No employee present on this day</span>
+            {% endif %}
+        <br>
+    </div>
+{% endblock %}

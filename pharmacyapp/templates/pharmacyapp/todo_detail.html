@@ -1,0 +1,29 @@
+{% extends "base-generic.html" %}
+
+{% block content %}
+    <br>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/todo_detail_styles.css' %}">
+    <h1>TODO</h1>
+    <div style="margin: 10px;">
+        <button class="cust-button" onclick="location.href='{% url "todo-update" todo.id %}';">Update TODO</button>
+        <button class="cust-button" onclick="location.href='{% url "todo-delete" todo.id %}';">Delete TODO</button>
+    </div>
+    <div class="bord">
+        <br>
+        <h6>Title : <span> {{ object.title }} </span> </h6>
+        <h6>Date : <span> {{ object.date }} </span> </h6>
+        <h6>Description : <span> {{ object.description }} </span> </h6>
+        <h6>Employees :
+            {% if object.employees.all %}
+                <ul>
+                    {% for emp in object.employees.all %}
+                        <li>{{ emp.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <span>No employee selected</span>
+            {% endif %}
+        <br>
+    </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base-generic.html" %}
+
+{% block content %}
+    <br>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dealer_detail_styles.css' %}">
+    <h1>Dealer</h1>
+    <div style="margin: 10px;">
+        <button class="cust-button" onclick="location.href='{% url "dealer-update" dealer.id %}';">Update Medicine</button>
+        <button class="cust-button" onclick="location.href='{% url "dealer-delete" dealer.id %}';">Delete Medicine</button>
+    </div>
+    <div class="bord">
+        <br>
+        <h6>Name : <span> {{ dealer.name }} </span> </h6>
+        <h6>Address : <span> {{ dealer.address }} </span> </h6>
+        <h6>Phone No : <span> {{ dealer.phone_no }} </span> </h6>
+        <h6>Email : <span> {{ dealer.email }} </span> </h6>
+        <br>
+    </div>
+    <h1>Medicine</h1>
+    <div class="bord">
+        <br>
+        {% if dealer.price_set.all %}
+            <ul class="list-group">
+            {% for medicine in dealer.price_set.all %}
+                <li class="list-med-item list-group-item" style="background-color:#ECE5F0; border-radius: 50px; justify-content: center;">
+                <div class="container">
+                <div class="row" style="justify-content: space-around;">
+                    <div class="row-sm">
+                        <a href="{% url 'medicine-detail' medicine.medicine.id %}">{{ medicine.medicine }}</a>
+                    </div>
+                    <div class="row-sm">
+                        <button class="cust-button" onclick="location.href='{% url "medicine-price-delete" medicine.id medicine.medicine.id %}';">Delete</button>
+                    </div>
+                    <div class="row-sm">
+                        <button class="cust-button" onclick="location.href='{% url "medicine-price-update" medicine.id medicine.medicine.id %}';">Update</button>
+                    </div>
+                </div>
+                </div>
+            </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>There are no price for this medicine.</p>
+        {% endif %}
+    </div>
+{% endblock %}

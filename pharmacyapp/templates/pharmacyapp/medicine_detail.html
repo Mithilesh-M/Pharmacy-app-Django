@@ -1,0 +1,53 @@
+{% extends "base-generic.html" %}
+
+{% block content %}
+    <br>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/medicine_detail_styles.css' %}">
+    <h1>Medicine</h1>
+    <div style="margin: 10px;">
+        <button class="cust-button" onclick="location.href='{% url "medicine-update" medicine.id %}';">Update Medicine</button>
+        <button class="cust-button" onclick="location.href='{% url "medicine-delete" medicine.id %}';">Delete Medicine</button>
+    </div>
+    <div class="bord">
+        <br>
+        <h6>Code : <span> {{ medicine.code }} </span> </h6>
+        <h6>Name : <span> {{ medicine.name }} </span> </h6>
+        <h6>Stock : <span> {{medicine.stock }} </span> </h6>
+        <h6>Description : <span> {{ medicine.description }} </span> </h6>
+        <br>
+    </div>
+    <h1>Price</h1>
+    <div class="bord">
+        <div>
+            <button class="cust-button" onclick="location.href='{% url "medicine-price-create" medicine.id %}';">Create Price</button>
+        </div>
+        <br>
+        {% if medicine.price_set.all %}
+            <ul class="list-group">
+            {% for price in medicine.price_set.all %}
+                <li class="list-med-item list-group-item" style="background-color:#ECE5F0; border-radius: 50px; justify-content: center;">
+                <div class="container">
+                <div class="row" style="justify-content: space-around;">
+                    <div class="row-sm">
+                        <a href="">{{ price.dealer }}</a>
+                    </div>
+                    <div class="row-sm">
+                        {{ price.price }}
+                    </div>
+                    <div class="row-sm">
+                        <button class="cust-button" onclick="location.href='{% url "medicine-price-delete" price.id medicine.id%}';">Delete</button>
+                    </div>
+                    <div class="row-sm">
+                        <button class="cust-button" onclick="location.href='{% url "medicine-price-update" price.id medicine.id %}';">Update</button>
+                    </div>
+                </div>
+                </div>
+            </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>There are no price for this medicine.</p>
+        {% endif %}
+    </div>
+{% endblock %}

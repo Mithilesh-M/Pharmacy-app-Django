@@ -1,0 +1,20 @@
+{% extends "base-generic.html" %}
+
+{% block content %}
+    <br>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bill_detail_styles.css' %}">
+    <h1>Bill</h1>
+    <div style="margin: 10px;">
+        <button class="cust-button" onclick="location.href='{% url "bill-update" bill.id %}';">Update Bill</button>
+        <button class="cust-button" onclick="location.href='{% url "bill-delete" bill.id %}';">Delete Bill</button>
+    </div>
+    <div class="bord">
+        <br>
+        <h6>Customer : <span> {{ object.customer.name }} </span> </h6>
+        <h6>Date : <span> {{ object.date }} </span> </h6>
+        <h6>Amount : <span> {{ object.amount }} </span> </h6>
+        <h6>Employee : <span> {{ object.employee.name }} </span> </h6>
+        <br>
+    </div>
+{% endblock %}

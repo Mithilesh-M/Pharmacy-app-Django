@@ -1,0 +1,22 @@
+{% extends "base-generic.html" %}
+
+{% block content %}
+    <br>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/employee_detail_styles.css' %}">
+    <h1>Employee</h1>
+    <div style="margin: 10px;">
+        <button class="cust-button" onclick="location.href='{% url "employee-update" employee.id %}';">Update Employee</button>
+        <button class="cust-button" onclick="location.href='{% url "employee-delete" employee.id %}';">Delete Employee</button>
+    </div>
+    <div class="bord">
+        <br>
+        <h6>Name : <span> {{ employee.name }} </span> </h6>
+        <h6>Address : <span> {{ employee.address }} </span> </h6>
+        <h6>Phone No : <span> {{ employee.phone_no }} </span> </h6>
+        <h6>Email : <span> {{ employee.email }} </span> </h6>
+        <h6>Id Proof : <span> {{ employee.get_id_proof_display }} </span> </h6>
+        <h6>Id Proof Unique No : <span> {{ employee.proof_unique_no }} </span> </h6>
+        <br>
+    </div>
+{% endblock %}

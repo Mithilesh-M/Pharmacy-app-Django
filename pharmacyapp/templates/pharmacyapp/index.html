@@ -1,0 +1,35 @@
+{% extends "base-generic.html" %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/index_styles.css' %}">
+    <div class="content-1">
+        <h4>Summary</h4>
+        <div>No.Of Medicine: {{ No_Of_Medicine }}</div>
+        <div>No.Of Bill: {{ No_Of_Bill }}</div>
+        <div>No.Of Customer: {{ No_Of_Customer }}</div>
+        <div>No.Of Dealer: {{ No_Of_Dealer }}</div>
+        <div>No.Of Employee: {{ No_Of_Employee }}</div>
+        <div>No.Of TODO: {{ No_Of_TODO }}</div>
+    </div>
+    <div class="content-2">
+        <div class="row">
+            <button class="cust-button" onclick="location.href='{% url 'medicine-create' %}';">Create Medicine</button>
+            <button class="cust-button" onclick="location.href='{% url 'bill-create' %}';">Create Bill</button>
+            <button class="cust-button" onclick="location.href='{% url 'customer-create' %}';">Create Customer</button>
+            <button class="cust-button" onclick="location.href='{% url 'dealer-create' %}';">Create Dealer</button>
+            <button class="cust-button" onclick="location.href='{% url 'employee-create' %}';">Create Employee</button>
+            <button class="cust-button" onclick="location.href='{% url 'todo-create' %}';">Create TODO</button>
+            <button class="cust-button" onclick="location.href='{% url 'attendance-create' %}';">Put Attendance</button>
+        </div>
+        <div class="row">
+            <button class="cust-button" onclick="location.href='{% url 'medicine-list' %}';">View Medicine</button>
+            <button class="cust-button" onclick="location.href='{% url 'bill-list' %}';">View Bill</button>
+            <button class="cust-button" onclick="location.href='{% url 'customer-list' %}';">View Customer</button>
+            <button class="cust-button" onclick="location.href='{% url 'dealer-list' %}';">View Dealer</button>
+            <button class="cust-button" onclick="location.href='{% url 'employee-list' %}';">View Employee</button>
+            <button class="cust-button" onclick="location.href='{% url 'todo-list' %}';">View TODO</button>
+            <button class="cust-button" onclick="location.href='{% url 'attendance-list' %}';">View Attendance</button>
+        </div>
+    </div>
+{% endblock %}
